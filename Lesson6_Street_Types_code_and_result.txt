@@ -1,0 +1,170 @@
+>>>
+CODE
+
+#MongoDB Wrangling
+#Lesson 6 - Case Study : Openstreetmap Data
+#Iterative SAX XML Parsing
+#Example using xml.etree.ElementTree.iterparse
+#Code is written from screenshot from Lesson 6.1
+
+#import xml.etree.cElementTree as ET
+import xml.etree.ElementTree as ET
+from collections import defaultdict
+import re
+
+osm_file = open("chicago_illinois.osm", "r")
+
+# \b = word-boundary meta character (start-of-word). \B matches end-of-word
+# \S = anything not a whitespace charcter (space, tab, newline, formfeed, and such). Opposite of \s
+# + = quantyfier, at least one required, additional are optional
+# \. = escaped metacharacter, matches the 'dot' character
+# ? = quantyfier, one allowed, but it is optional
+# $ = matches the position at the end of the string
+
+street_type_re = re.compile(r'\b\S+\.?$', re.IGNORECASE)
+street_types = defaultdict(int)
+
+def audit_street_type(street_types, street_name):
+	m = street_type_re.search(street_name)
+	if m:
+		street_type = m.group()
+		street_types[street_type] += 1
+
+def print_sorted_dict(d):
+	keys = d.keys()
+	keys = sorted(keys, key=lambda s: s.lower())
+	for k in keys:
+		v = d[k]
+		print "%s: %d" % (k,v)
+
+def is_street_name(elem):
+	return (elem.tag == "tag") and (elem.attrib['k'] == "addr:street")
+
+def audit():
+	for event, elem in ET.iterparse(osm_file):
+		if is_street_name(elem):
+			audit_street_type(street_types, elem.attrib['v'])
+	print_sorted_dict(street_types)
+
+if __name__ == '__main__':
+	audit()
+
+<<<
+
+RESULT
+>>>
+claus-h-rasmussens-mac-pro-2:Data Analyst MongoDB claushrasmussen$ python Lesson6_Case_study_OSM_Iterative_SAX_XML_parsing.py
+104: 1
+127: 1
+14: 2
+176: 1
+20: 4
+201: 1
+22: 1
+231: 1
+30: 3
+301: 1
+31: 1
+311: 1
+34: 3
+38: 2
+47: 2
+53: 3
+550: 1
+59: 15
+6: 1
+60008: 1
+60435: 1
+60463: 1
+60546: 1
+64: 5
+83: 3
+Access: 1
+Arrivals: 1
+Ave: 61
+Ave.: 8
+avenue: 2
+AVENUE: 1
+Avenue: 316598
+B: 190
+Belmont: 1
+blvd: 1
+Blvd: 36
+Blvd.: 4
+Boulevard: 8244
+Box: 1
+Broadway: 396
+C: 194
+Center: 27
+Cir: 92
+Circle: 154
+Commons: 2
+Court: 1589
+Ct: 242
+Ct.: 4
+Ctr.: 1
+D: 142
+Dean: 1
+Dr: 579
+Dr.: 15
+Drive: 3470
+E: 239
+East: 5
+F: 280
+G: 418
+H: 499
+Harlem: 1
+Harrison: 1
+Highway: 401
+HWY: 1
+Hwy.: 1
+J: 561
+Justamere: 1
+K: 63
+L: 729
+Lane: 599
+Larchmont: 1
+Level): 1
+Ln: 84
+Loomis: 3
+M: 727
+Market: 50
+Millsfell: 1
+Milwaukee: 1
+N: 634
+North: 16
+O: 522
+Park: 155
+Parkway: 1270
+Path: 15
+Pkwy: 5
+Pl: 1
+Place: 24984
+place: 1
+Plaza: 21
+QQ: 1
+Rd: 98
+RD: 2
+rd: 1
+Rd.: 11
+road: 2
+Road: 6818
+Row: 4
+Shabbona: 3
+Square: 63
+St: 276
+st: 1
+St.: 6
+street: 2
+Street: 138528
+Ter: 1
+Terrace: 562
+Trail: 34
+Trl: 16
+US-6: 1
+Vista: 1
+Walk: 9
+Way: 10
+West: 81
+
+<<<

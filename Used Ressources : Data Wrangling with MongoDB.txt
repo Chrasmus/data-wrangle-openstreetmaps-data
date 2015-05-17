@@ -1,0 +1,20 @@
+Final Project : Data wrangling with MongoDB
+
+OpenStreetMap Sample Project
+Data Wrangling with MongoDB.
+
+
+17 May 2015
+Claus H. Rasmussen
+
+chrasmussen@me.com
+
+- - - - - - - - - - - - - -
+
+Used ressources:
+	https://www.openstreetmap.org
+	https://docs.python.org
+	https://www.mongodb.com
+	http://stackoverflow.com
+	"MongoDB The Definitive Guide" by Kristina Chodorow, O'Reilly, Second edition, 2013.
+	"The Quick Python Book" by Naomi R. Ceder, Manning, Second edition, 2010.

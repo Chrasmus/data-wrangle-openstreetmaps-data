@@ -1,0 +1,22 @@
+Final Project : Data wrangling with MongoDB
+
+OpenStreetMap Sample Project
+Data Wrangling with MongoDB.
+
+
+17 May 2015
+Claus H. Rasmussen
+
+chrasmussen@me.com
+
+- - - - - - - - - - - - - - - -
+
+
+The OSM used here is covering the City of Aarhus, Jutland, Denmark, Europe (6.8 MB zipped, 125.9 MB as XML):
+
+URL: https://s3.amazonaws.com/metro-extracts.mapzen.com/aarhus_denmark.osm.bz2
+
+Example.osm (2.3 MB) URL: https://www.openstreetmap.org/export#map=16/56.1185/10.1535
+
+
+I have chosen this city because I have lived here for some decades now, and I am therefore quite familiar with the names and places.
